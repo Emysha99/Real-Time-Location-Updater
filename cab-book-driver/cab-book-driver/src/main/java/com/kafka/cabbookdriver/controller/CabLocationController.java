@@ -20,10 +20,12 @@ public class CabLocationController {
     //business logic
 
     @PutMapping
-    public ResponseEntity updateLocation(){
+    public ResponseEntity updateLocation() throws InterruptedException{
         int range=100;
         while(range>0){
-            System.out.println(Math.random()+" , "+Math.random());
+            cabLocationService.updateLocation(Math.random()+" , "+Math.random());
+            Thread.sleep(1000);
+            //System.out.println((Math.random()+" , "+Math.random()));
             range--;
         }
         return new ResponseEntity<>(Map.of("message","Location updated"), HttpStatus.OK);
